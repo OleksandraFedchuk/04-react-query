@@ -50,6 +50,7 @@ export default function App() {
       {!isLoading && !isError && (
         <MovieGrid movie={data} onSelect={handleSelect} />
       )}
+      {data && <MovieGrid movie={data} onSelect={handleSelect} />}
       {data && <MovieModal movie={selectedMovie} onClose={handleCloseModal} />}
       {/* {selectedMovie && (
         <MovieModal movie={selectedMovie} onClose={handleCloseModal} />
