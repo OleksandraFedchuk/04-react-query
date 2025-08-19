@@ -15,9 +15,10 @@ export default function App() {
   const [page, setPage] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
-  const { data, isError, isLoading } = useQuery({
-    queryKey: ["movie"],
-    queryFn: () => handleSearch,
+  const { data, isError, isLoading, isFetched, isSuccess } = useQuery({
+    queryKey: ["movie", setPage],
+    queryFn: () => handleSearch(setPage),
+    enabled: page > 0,
   });
 
   const delay = (ms: number) =>
