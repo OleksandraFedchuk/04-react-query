@@ -16,13 +16,16 @@ export const url = axios.create({
   },
 });
 
-export const fetchMovies = async (query: string): Promise<Movie[]> => {
+export const fetchMovies = async (
+  query: string,
+  page: number = 1
+): Promise<Movie[]> => {
   const response = await url.get<fetchMoviesProps>(`search/movie`, {
     params: {
       query,
       include_adult: false,
       language: "en",
-      page: 1,
+      page,
     },
   });
   return response.data.results;
