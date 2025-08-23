@@ -1,7 +1,7 @@
 import axios from "axios";
 import { type Movie } from "../types/movie";
 
-interface fetchMoviesProps {
+export interface fetchMoviesProps {
   results: Movie[];
   page: number;
   total_pages: number;
@@ -19,7 +19,7 @@ export const url = axios.create({
 export const fetchMovies = async (
   query: string,
   page: number = 1
-): Promise<Movie[]> => {
+): Promise<fetchMoviesProps> => {
   const response = await url.get<fetchMoviesProps>(`search/movie`, {
     params: {
       query,
@@ -28,5 +28,5 @@ export const fetchMovies = async (
       page,
     },
   });
-  return response.data.results;
+  return response.data;
 };
